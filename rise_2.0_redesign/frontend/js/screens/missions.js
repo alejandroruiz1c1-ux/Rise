@@ -1,0 +1,2 @@
+const MissionsScreen = { render() { return `<div class="page-enter safe-area-top"><header class="header"><div class="header-title">Misiones</div></header><section class="section"><div class="empty-state"><i class="ti ti-target empty-state-icon"></i><div class="empty-state-title">Misiones</div><div class="empty-state-description">Próximamente</div></div></section></div>`; } };
+window.MissionsScreen = MissionsScreen;
