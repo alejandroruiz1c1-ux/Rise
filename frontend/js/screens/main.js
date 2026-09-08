@@ -9,8 +9,12 @@ let currentScreen = 'onboarding';
 function navigateTo(screen) {
   currentScreen = screen;
   
+  // Actualizar navegación
+  updateNavigation(screen);
+  
   switch (screen) {
     case 'onboarding':
+      hideNavigation();
       OnboardingScreen.render();
       break;
     case 'dashboard':
@@ -18,6 +22,7 @@ function navigateTo(screen) {
         navigateTo('onboarding');
         return;
       }
+      showNavigation();
       DashboardScreen.render();
       break;
     case 'habits':
@@ -25,18 +30,83 @@ function navigateTo(screen) {
         navigateTo('onboarding');
         return;
       }
+      showNavigation();
       HabitsScreen.render();
       break;
     case 'missions':
+      if (!State.isAuthenticated()) {
+        navigateTo('onboarding');
+        return;
+      }
+      showNavigation();
+      MissionsScreen.render();
+      break;
     case 'evolution':
+      if (!State.isAuthenticated()) {
+        navigateTo('onboarding');
+        return;
+      }
+      showNavigation();
+      EvolutionScreen.render();
+      break;
     case 'finance':
+      if (!State.isAuthenticated()) {
+        navigateTo('onboarding');
+        return;
+      }
+      showNavigation();
+      FinanceScreen.render();
+      break;
     case 'diary':
+      if (!State.isAuthenticated()) {
+        navigateTo('onboarding');
+        return;
+      }
+      showNavigation();
+      DiaryScreen.render();
+      break;
     case 'profile':
-      console.log('Screen no implementado:', screen);
+      if (!State.isAuthenticated()) {
+        navigateTo('onboarding');
+        return;
+      }
+      showNavigation();
+      ProfileScreen.render();
       break;
     default:
       navigateTo('onboarding');
   }
+}
+
+// Mostrar/ocultar navegación
+function showNavigation() {
+  const nav = document.getElementById('bottom-nav');
+  if (nav) nav.style.display = 'flex';
+}
+
+function hideNavigation() {
+  const nav = document.getElementById('bottom-nav');
+  if (nav) nav.style.display = 'none';
+}
+
+// Actualizar estado activo de la navegación
+function updateNavigation(screen) {
+  const navItems = document.querySelectorAll('.nav-item');
+  const screenMap = {
+    'dashboard': 0,
+    'habits': 1,
+    'missions': 2,
+    'evolution': 3,
+    'profile': 4
+  };
+  
+  navItems.forEach((item, index) => {
+    if (index === screenMap[screen]) {
+      item.classList.add('active');
+    } else {
+      item.classList.remove('active');
+    }
+  });
 }
 
 // Utilidades de UI
