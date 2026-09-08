@@ -1,0 +1,637 @@
+/* 
+ * ========================================
+ * RISE 2.0 - ANIMATION SYSTEM
+ * Motion Design consistente y natural
+ * ========================================
+ */
+
+/* ========== TIMING FUNCTIONS ========== */
+
+:root {
+  /* Curvas de animación estilo iOS */
+  --ease-ios-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+  --ease-ios-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-ios-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
+  --ease-ios-sharp: cubic-bezier(0.4, 0.0, 0.6, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring-gentle: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== FADE ANIMATIONS ========== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.fade-in { animation: fadeIn 0.3s var(--ease-ios-standard); }
+.fade-out { animation: fadeOut 0.3s var(--ease-ios-standard); }
+.fade-in-up { animation: fadeInUp 0.4s var(--ease-ios-decelerate); }
+.fade-in-down { animation: fadeInDown 0.4s var(--ease-ios-decelerate); }
+.fade-in-left { animation: fadeInLeft 0.3s var(--ease-ios-standard); }
+.fade-in-right { animation: fadeInRight 0.3s var(--ease-ios-standard); }
+
+/* ========== SCALE ANIMATIONS ========== */
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes scaleInSpring {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.scale-in { animation: scaleIn 0.3s var(--ease-ios-standard); }
+.scale-out { animation: scaleOut 0.3s var(--ease-ios-standard); }
+.scale-in-spring { animation: scaleInSpring 0.4s var(--ease-spring); }
+.pulse { animation: pulse 0.5s var(--ease-spring); }
+.pulse-subtle { animation: pulse-subtle 2s var(--ease-ios-standard) infinite; }
+
+/* ========== SLIDE ANIMATIONS ========== */
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up { animation: slideUp 0.4s var(--ease-ios-decelerate); }
+.slide-down { animation: slideDown 0.4s var(--ease-ios-decelerate); }
+.slide-in-from-bottom { animation: slideInFromBottom 0.5s var(--ease-ios-decelerate); }
+
+/* ========== TRANSITION ANIMATIONS ========== */
+
+@keyframes transitionPush {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes transitionPop {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.transition-push { animation: transitionPush 0.35s var(--ease-ios-decelerate); }
+.transition-pop { animation: transitionPop 0.35s var(--ease-ios-decelerate); }
+
+/* ========== CHECKMARK ANIMATION ========== */
+
+@keyframes checkmarkDraw {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes checkmarkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.checkmark-draw {
+  animation: checkmarkDraw 0.4s var(--ease-ios-decelerate) forwards;
+}
+
+.checkmark-bounce {
+  animation: checkmarkBounce 0.4s var(--ease-spring) forwards;
+}
+
+/* ========== PROGRESS ANIMATIONS ========== */
+
+@keyframes progressFill {
+  from {
+    stroke-dashoffset: var(--circumference);
+  }
+  to {
+    stroke-dashoffset: var(--progress-offset);
+  }
+}
+
+@keyframes progressBar {
+  from { width: 0%; }
+  to { width: var(--target-width); }
+}
+
+.progress-fill {
+  animation: progressFill 0.8s var(--ease-ios-decelerate) forwards;
+}
+
+.progress-bar {
+  animation: progressBar 0.6s var(--ease-ios-decelerate) forwards;
+}
+
+/* ========== XP GAIN ANIMATION ========== */
+
+@keyframes xpFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(1.1);
+  }
+}
+
+.xp-float {
+  animation: xpFloat 0.8s var(--ease-ios-decelerate) forwards;
+  position: absolute;
+  pointer-events: none;
+  font-weight: var(--weight-bold);
+  color: var(--accent-primary);
+  font-size: var(--text-sm);
+}
+
+/* ========== SHIMMER EFFECT ========== */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-tertiary) 0%,
+    var(--bg-elevated) 50%,
+    var(--bg-tertiary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ========== SHAKE ANIMATION ========== */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-8px); }
+  40% { transform: translateX(8px); }
+  60% { transform: translateX(-6px); }
+  80% { transform: translateX(6px); }
+}
+
+.shake {
+  animation: shake 0.5s var(--ease-ios-sharp);
+}
+
+/* ========== BOUNCE ANIMATION ========== */
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.bounce {
+  animation: bounce 0.6s var(--ease-spring);
+}
+
+/* ========== ROTATE ANIMATION ========== */
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ========== LEVEL UP ANIMATION ========== */
+
+@keyframes levelUpGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--accent-glow), 0 0 60px var(--accent-glow);
+  }
+}
+
+@keyframes levelUpPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.level-up-glow {
+  animation: levelUpGlow 1.5s var(--ease-ios-standard) infinite;
+}
+
+.level-up-pulse {
+  animation: levelUpPulse 0.6s var(--ease-spring);
+}
+
+/* ========== STAGGER ANIMATIONS ========== */
+
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+.stagger-6 { animation-delay: 0.3s; }
+.stagger-7 { animation-delay: 0.35s; }
+.stagger-8 { animation-delay: 0.4s; }
+
+/* ========== PRESS FEEDBACK ========== */
+
+.press-feedback:active {
+  transform: scale(0.96);
+  transition: transform 0.1s var(--ease-ios-standard);
+}
+
+.press-feedback-card:active {
+  transform: scale(0.98);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s var(--ease-ios-standard);
+}
+
+/* ========== RIPPLE EFFECT ========== */
+
+.ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ========== MODAL ANIMATIONS ========== */
+
+@keyframes modalBackdropFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-backdrop {
+  animation: modalBackdropFade 0.3s var(--ease-ios-standard);
+}
+
+.modal-container {
+  animation: modalSlideUp 0.4s var(--ease-ios-decelerate);
+}
+
+/* ========== BOTTOM SHEET ANIMATIONS ========== */
+
+@keyframes sheetSlideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.bottom-sheet {
+  animation: sheetSlideUp 0.4s var(--ease-ios-decelerate);
+}
+
+/* ========== NAVIGATION BAR ANIMATIONS ========== */
+
+@keyframes navBarSlideUp {
+  from {
+    transform: translateY(calc(100% + 20px));
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.navbar {
+  animation: navBarSlideUp 0.5s var(--ease-ios-decelerate);
+}
+
+/* ========== CARD STACK ANIMATION ========== */
+
+@keyframes cardStackEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.card-stack-item {
+  animation: cardStackEnter 0.4s var(--ease-ios-decelerate) backwards;
+}
+
+/* ========== FLOATING LABEL ANIMATION ========== */
+
+@keyframes floatLabel {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.float-label {
+  animation: floatLabel 0.3s var(--ease-ios-decelerate);
+}
+
+/* ========== NUMBER COUNTER ANIMATION ========== */
+
+@keyframes numberScroll {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.number-animate {
+  display: inline-block;
+  animation: numberScroll 0.4s var(--ease-ios-decelerate);
+}
+
+/* ========== TOAST ANIMATIONS ========== */
+
+@keyframes toastEnter {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+}
+
+.toast-enter {
+  animation: toastEnter 0.3s var(--ease-ios-decelerate);
+}
+
+.toast-exit {
+  animation: toastExit 0.3s var(--ease-ios-standard);
+}
+
+/* ========== SUCCESS CHECK ANIMATION ========== */
+
+@keyframes successCheck {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-check {
+  animation: successCheck 0.4s var(--ease-spring) forwards;
+}
+
+/* ========== LOADING SPINNER ========== */
+
+@keyframes spinnerRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-base);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spinnerRotate 0.8s linear infinite;
+}
+
+.spinner-sm {
+  width: 18px;
+  height: 18px;
+  border-width: 1.5px;
+}
+
+.spinner-lg {
+  width: 32px;
+  height: 32px;
+  border-width: 2.5px;
+}
+
+/* ========== PAGE TRANSITIONS ========== */
+
+.page-enter {
+  animation: fadeIn 0.35s var(--ease-ios-standard);
+}
+
+.page-leave {
+  animation: fadeOut 0.3s var(--ease-ios-standard);
+}
+
+/* ========== UTILITY CLASSES ========== */
+
+.animate-once { animation-iteration-count: once; }
+.animate-infinite { animation-iteration-count: infinite; }
+.animate-reverse { animation-direction: reverse; }
+.animate-alternate { animation-direction: alternate; }
+
+.no-animation {
+  animation: none !important;
+  transition: none !important;
+}
+
+.reduce-motion {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ========== MEDIA QUERY FOR REDUCED MOTION ========== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

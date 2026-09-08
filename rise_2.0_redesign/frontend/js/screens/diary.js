@@ -1,0 +1,2 @@
+const DiaryScreen = { render() { return `<div class="page-enter safe-area-top"><header class="header"><div class="header-title">Diario</div></header><section class="section"><div class="empty-state"><i class="ti ti-book empty-state-icon"></i><div class="empty-state-title">Diario</div><div class="empty-state-description">Próximamente</div></div></section></div>`; } };
+window.DiaryScreen = DiaryScreen;
